@@ -1,8 +1,8 @@
-elementsw_username = "********"
+elementsw_username = "admin"
 
-elementsw_password = "********"
+elementsw_password = "Netapp1!"
 
-elementsw_cluster = "********"
+elementsw_cluster = "sf1.demo.netapp.com"
 
 elementsw_api_version = "10.1"
 
