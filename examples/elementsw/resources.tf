@@ -18,10 +18,21 @@ resource "elementsw_volume" "test-volume" {
     count = "${length(var.total_size)}"
 }
 
+resource "elementsw_volume" "test-volume-demo" {
+    provider = "netapp-elementsw"
+    name = "test-Volume-demo"
+    account = "${elementsw_account.test-account.id}"
+    total_size = 250000000000
+    enable512e = true
+    min_iops = 5000
+    max_iops = 10000
+    burst_iops = 10000
+}
+
 resource "elementsw_volume_access_group" "test-group" {
     provider = "netapp-elementsw"
     name = "test-Group"
-    volumes = "${elementsw_volume.test-volume.*.id}"
+    volumes = "${concat(elementsw_volume.test-volume.*.id, list(elementsw_volume.test-volume-demo.id))}"
 }
 
 resource "elementsw_initiator" "test-initiator" {
